@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class FetchDataComponent implements OnInit {
   public forecasts?: WeatherForecast[];
+
   constructor(http: HttpClient) {
     http.get<WeatherForecast[]>(environment.baseUrl + 'api/weatherforecast')
       .subscribe(result => {

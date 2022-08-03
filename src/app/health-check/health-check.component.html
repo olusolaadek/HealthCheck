@@ -1,0 +1,33 @@
+<h1>List of Domain and ther Health Status </h1>
+<div *ngIf="!healthData">
+  <em> Loading health data...</em>
+</div>
+<div class="container container-fluid">
+  <table class="table table-light table-bordered">
+    <thead>
+      <th>Name</th>
+      <th>Response Time</th>
+      <th>Status</th>
+      <th>Description</th>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of healthData">
+        <td>{{item.name}}</td>
+        <td>{{item.responseTime}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.description}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total Status</td>
+        <td>{{totalStatus}}</td>
+        <td>Total Response Time</td>
+        <td>{{totalResponseTime}}</td>
+
+
+      </tr>
+    </tfoot>
+  </table>
+</div>
