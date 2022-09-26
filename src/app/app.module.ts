@@ -17,6 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { environment } from '../environments/environment';
+import {
+  ConnectionServiceModule,
+  ConnectionServiceOptions,
+  ConnectionServiceOptionsToken,
+} from 'angular-connection-service';
 
 @NgModule({
   declarations: [
@@ -35,6 +40,7 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    ConnectionServiceModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -43,7 +49,14 @@ import { environment } from '../environments/environment';
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ConnectionServiceOptionsToken,
+      useValue: <ConnectionServiceOptions>{
+        heartbeatUrl: environment.baseUrl + 'api/heartbeat',
+      },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
